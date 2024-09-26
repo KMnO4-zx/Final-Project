@@ -1,4 +1,7 @@
 # Final-Project
+
+[中文](Readme_zh.md)
+
 The code about this final project (Online scheduling of image satellites based on deep reinforcement learning)
 There are 10 py files of this project:
 In the all code of the project, for A3C, DDPG, DQN and GA, I use a framework then make some changes according to the environment and problem I study,other files are wirtten by myself.
