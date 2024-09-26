@@ -167,9 +167,6 @@ class Environment(object):
                     next_state = (normalized_arrival_time,normalized_profit,normalized_storage,normalized_time)
                     return np.array(next_state), self.total_profit, self.done
 
-        
-        
-
         # Updating the total used storage
         self.total_storage += self.task[self.counts][2]
         if(self.total_storage>self.max_storage):
@@ -178,7 +175,6 @@ class Environment(object):
         # Updating the total taken time
         self.total_time +=self.task[self.counts][1]
         
-
         #Update the reward and add task
         self.time_windows = self.time_windows +[self.counts]
         self.total_profit = self.total_profit +self.task[self.counts][3]
@@ -224,10 +220,6 @@ class Environment(object):
             self.task[i].append(self.arrival[i])
             self.task[i].append(self.arrival[i]+self.et)
         self.state = None
-        
-        
-
- 
 
    #A method used to return the first state
     def observe(self):
@@ -239,7 +231,21 @@ class Environment(object):
         return np.array(current_state)
         
     
-
+if __name__ == "__main__":
+    # 创建环境实例
+    env = Environment()
+    # 重置环境
+    state = env.reset()
+    print("初始状态:", state)
     
+    # 模拟几次动作
+    for _ in range(10):
+        action = random.randint(0, 1)  # 随机选择接受或拒绝任务
+        next_state, reward, done = env.update_env(action)
+        print(f"选择的动作: {action}, 下一状态: {next_state}, 当前收益: {reward}, 是否结束: {done}")
+        if done:
+            break
+    print("最终收益:", env.total_profit)
+
     
     
