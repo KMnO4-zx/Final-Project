@@ -118,7 +118,9 @@ if __name__ == "__main__":
     print("Initial State:", env.observe())
 
     # Simulate a sequence of actions (0 for accepting, 1 for rejecting)
-    actions = [0, 1, 0, 0, 1, 0]  # Example action sequence
+    # actions = [0, 1, 0, 0, 1, 0]  # Example action sequence
+    actions = [random.randint(0, 1) for _ in range(99)]
+
     for i, action in enumerate(actions):
         next_state, total_profit, done = env.update_env(action)
         print(f"Step {i+1}: Action: {action}, Next State: {next_state}, Total Profit: {total_profit}, Done: {done}")

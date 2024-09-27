@@ -232,20 +232,26 @@ class Environment(object):
         
     
 if __name__ == "__main__":
-    # 创建环境实例
     env = Environment()
-    # 重置环境
-    state = env.reset()
-    print("初始状态:", state)
-    
-    # 模拟几次动作
-    for _ in range(10):
-        action = random.randint(0, 1)  # 随机选择接受或拒绝任务
-        next_state, reward, done = env.update_env(action)
-        print(f"选择的动作: {action}, 下一状态: {next_state}, 当前收益: {reward}, 是否结束: {done}")
+    print("Initial State:", env.observe())
+
+    # Simulate a sequence of actions (0 for accepting, 1 for rejecting)
+    # actions = [0, 1, 0, 0, 1, 0]  # Example action sequence
+    actions = [random.randint(0, 1) for _ in range(99)]
+
+    for i, action in enumerate(actions):
+        next_state, total_profit, done = env.update_env(action)
+        print(f"Step {i+1}: Action: {action}, Next State: {next_state}, Total Profit: {total_profit}, Done: {done}")
         if done:
-            break
-    print("最终收益:", env.total_profit)
+            break  # Stop if done
+
+    # Reset the environment
+    env.reset()
+    print("After Reset State:", env.observe())
+
+    # Check the state after reset
+    next_state_after_reset = env.observe()
+    print("Next State After Reset:", next_state_after_reset)
 
     
     
